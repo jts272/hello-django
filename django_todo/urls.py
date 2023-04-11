@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# import app functions
+from todo.views import say_hello
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # args: url, view function and name
+    path('hello/', say_hello, name='hello')
 ]
