@@ -63,3 +63,14 @@ unapplied migrations, owing to the `db.sqlite3` file created with
 3. Quit and restart the server to see that the warning messages are gone
 4. Navigate to `localhost:8000/admin` to login to Django administration
    - This admin path is provided by default in `urls.py`
+
+## Models
+
+Consider a model as the top row of a spreadsheet.
+
+Use _class inheritance_ from Django's own Models class. The `models.py` of our
+app created by Django imports this. We must simply supply it to the classes we
+create.
+
+In short, if functionality from one class is needed in another, inherit the
+required class.
