@@ -39,3 +39,27 @@ system, install a Django app with this functionality already designed.
 5. Update paths in `urls.py`.
    - Remember to import the corresponding function from `<app>.views`
 6. Add our app dir to the list of `INSTALLED_APPS` in `settings.py`
+
+## Migrations
+
+Migrations = Django's way of converting Python code into database operations.
+Instead of raw SQL commands for example, Django will do it for you, as long as
+you provide the Python code.
+
+When starting the Django development server, there will appear warnings of
+unapplied migrations, owing to the `db.sqlite3` file created with
+`startproject`, which has not been used.
+
+### Commands to know:
+
+1. `python3 manage.py makemigrations` + `--dry-run` flag
+2. `python3 manage.py showmigrations`
+3. `python3 manage.py migrate` + `--plan` flag
+
+### Logging into the database:
+
+1. `python3 manage.py create superuser`
+2. Fill in appropriate credentials to create superuser
+3. Quit and restart the server to see that the warning messages are gone
+4. Navigate to `localhost:8000/admin` to login to Django administration
+   - This admin path is provided by default in `urls.py`
