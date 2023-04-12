@@ -27,3 +27,15 @@ system, install a Django app with this functionality already designed.
    the `urlpatterns` list.
 4. With the Django server running, navigate to `localhost:8000/<your_url>` to
    view the page.
+
+## Templates
+
+1. Create `templates` dir
+2. Create dir of the same name as the app we are working in e.g. `todo/`
+3. Create your template HTML files in here
+   - With the VS Code Django extension installed, filetype `Django HTML` should
+     be recognized. Add an emmet mapping in settings if required.
+4. Update render function in `views.py`
+5. Update paths in `urls.py`.
+   - Remember to import the corresponding function from `<app>.views`
+6. Add our app dir to the list of `INSTALLED_APPS` in `settings.py`
