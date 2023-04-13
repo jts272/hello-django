@@ -74,3 +74,27 @@ create.
 
 In short, if functionality from one class is needed in another, inherit the
 required class.
+
+With the Item class defined, we need to actually create the table in the
+database. We do this with the migration commands outlined above.
+
+We still need to expose our model to be viewable in the admin panel. From the
+app's `admin.py`, we import the class and use `admin.site.register(<Class>)`
+
+By default, GitHub's Python .gitignore template will ensure that the resulting
+`db.sqlite3` file is not tracked. This is important as the database could
+contain sensitive information.
+
+The class is now available in the admin panel. The GUI can be used to perform
+CRUD functions on items in the table.
+
+To override Django's default generic table object naming convention, we add the
+following to the app's `models.py`:
+
+```
+def __str__(self):
+        return self.name
+```
+
+We will now see the name we have provided instead of the generic one assigned
+by Django's base Model.
