@@ -50,13 +50,13 @@ When starting the Django development server, there will appear warnings of
 unapplied migrations, owing to the `db.sqlite3` file created with
 `startproject`, which has not been used.
 
-### Commands to know:
+### Commands to know
 
 1. `python3 manage.py makemigrations` + `--dry-run` flag
 2. `python3 manage.py showmigrations`
 3. `python3 manage.py migrate` + `--plan` flag
 
-### Logging into the database:
+### Logging into the database
 
 1. `python3 manage.py create superuser`
 2. Fill in appropriate credentials to create superuser
@@ -91,10 +91,17 @@ CRUD functions on items in the table.
 To override Django's default generic table object naming convention, we add the
 following to the app's `models.py`:
 
-```
+```py
 def __str__(self):
         str(return self.name)
 ```
 
 We will now see the name we have provided instead of the generic one assigned
 by Django's base Model.
+
+## CRUD - R
+
+1. Give access to the Item model in `views.py`
+   - import, queryset var, context dict
+2. Supply context dict to the render() args
+3. Access the vars in the HTML file with templating syntax
