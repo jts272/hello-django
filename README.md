@@ -93,7 +93,7 @@ following to the app's `models.py`:
 
 ```
 def __str__(self):
-        return self.name
+        str(return self.name)
 ```
 
 We will now see the name we have provided instead of the generic one assigned

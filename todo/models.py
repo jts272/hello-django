@@ -14,4 +14,4 @@ class Item(models.Model):
     # Override default Django behaviour of displaying:
     # class.name, 'object', (class.pk)
     def __str__(self):
-        return self.name
+        return str(self.name)
