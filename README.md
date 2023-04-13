@@ -105,3 +105,15 @@ by Django's base Model.
    - import, queryset var, context dict
 2. Supply context dict to the render() args
 3. Access the vars in the HTML file with templating syntax
+
+### Using conditionals
+
+The templating syntax is like Jinja2, in that `{{}}` represents data and `{%%}`
+represents logic.
+
+The general flow is to start a loop, then use conditionals to display data from
+the db. For example, if an item has an `is_done` property, display the item name
+within a `<strike>` tag.
+
+Furthermore, the self-closing `{% empty %}` block can be used to render HTML in
+the instance that the model has no entries.
