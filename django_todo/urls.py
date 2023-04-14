@@ -17,13 +17,18 @@ from django.contrib import admin
 from django.urls import path
 
 # import app functions
-from todo.views import get_todo_list, add_item, edit_item
+# from todo.views import get_todo_list, add_item, edit_item, toggle_item
+
+# REFACTOR - prepend `views.` to each function to avoid long import list
+from todo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # args: url, view function and name
     # Empty string path means no particular url required
-    path('', get_todo_list, name='get_todo_list'),
-    path('add/', add_item, name='add_item'),
-    path('edit/<item_id>/', edit_item, name='edit_item')
+    path('', views.get_todo_list, name='get_todo_list'),
+    path('add/', views.add_item, name='add_item'),
+    path('edit/<item_id>/', views.edit_item, name='edit_item'),
+    path('toggle/<item_id>/', views.toggle_item, name='toggle_item'),
+    path('delete/<item_id>/', views.delete_item, name='delete_item')
 ]
