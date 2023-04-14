@@ -117,3 +117,25 @@ within a `<strike>` tag.
 
 Furthermore, the self-closing `{% empty %}` block can be used to render HTML in
 the instance that the model has no entries.
+
+## CRUD - C
+
+1. Create new HTML page - copy and rename the single page from the templates dir
+2. Add a link in the homepage with an href of `/add/`
+3. Create the view in `views.py`
+4. Include a path for `'add/'`, supplying the function and name properties
+   - Remember to import the function
+5. In our new page to add items, we create a form. Be deliberate in naming the
+   `name` and `id` attributes. Apply labels
+6. Set form `method="POST"` and `action="/add/"`
+7. Apply Django `{% csrf_token %}` (cross site request forgery)
+8. In `views.py` we create an `if` block on `POST`
+   - Get the form values and create a class instance with them
+9. Import `redirect` and apply to the return of the `POST` block
+   - We redirect to the function, which renders the appropriate HTML page. The
+     path in `urls.py` determines the actual browser url we go to
+
+Of special note is the syntax used for url paths. For example, in the form
+action, we want to submit the form to the current page. We need to use a
+preceding `/` to identify that we want to use the current page and not create a
+new one.
