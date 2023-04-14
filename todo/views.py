@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # Get access to the Item model
 from .models import Item
 # For form created using Django
@@ -48,3 +48,31 @@ def add_item(request):
     # return an http response by taking a request and template name
     # Give access to context var
     return render(request, 'todo/add_item.html', context)
+
+
+"""The item_id is passed in, which is the href given on the Edit button.
+Django creates the item.id, which itself is an iteration we created in
+the template for loop.
+
+item_id is used in urls.py with angled bracket syntax.
+"""
+
+
+def edit_item(request, item_id):
+    # Get item from the db
+    # The item id equals that passed into the view via the url
+    item = get_object_or_404(Item, id=item_id)
+    # Prefill with the item we just got from the db
+    form = ItemForm(instance=item)
+    context = {
+        'form': form
+    }
+
+    if request.method == "POST":
+        # Provide the specific item instance to update
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('get_todo_list')
+
+    return render(request, 'todo/edit_item.html', context)
