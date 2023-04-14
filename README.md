@@ -139,3 +139,32 @@ Of special note is the syntax used for url paths. For example, in the form
 action, we want to submit the form to the current page. We need to use a
 preceding `/` to identify that we want to use the current page and not create a
 new one.
+
+## Django forms
+
+Allow Django to handle and validate the form directly.
+
+1. Create `forms.py` in app root dir
+2. Imports:
+
+   ```py
+     from django import forms
+     from .models import Item
+   ```
+
+3. Setup the form class with inheritance
+4. Nest the `Meta` class and provide `model` and `fields`
+5. Import the `ItemForm` class into `views.py`
+6. Create an instance of the form and create `context` var. Pass this into the
+   return render
+7. Now we can display this form with a simple `{{ form }}` block
+   - We can alter the rendering method by appending `as_p`
+8. In the `POST` block, we need to now let Django validate the form:
+
+   ```py
+   # DJANGO POST HANDLER
+           form = ItemForm(request.POST)
+           if form.is_valid():
+               form.save()
+               return redirect('get_todo_list')
+   ```

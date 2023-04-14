@@ -11,20 +11,8 @@
     {% comment %} action = url we submit the form to {% endcomment %}
     <form method="POST" action="/add/">
       {% csrf_token %}
-      <div>
-        <p>
-          <label for="id_name">Name: </label>
-          <!-- name = access input's value -->
-          <!-- id = as selector for label, CSS/JS etc. -->
-          <input type="text" name="item_name" id="id_name" />
-        </p>
-      </div>
-      <div>
-        <p>
-          <label for="id_is_done">Is done: </label>
-          <input type="checkbox" name="is_done" id="id_is_done" />
-        </p>
-      </div>
+      <!-- as_p renders form elements in <p> tags -->
+      {{ form.as_p }}
       <div>
         <p>
           <button type="submit">Add Item</button>
