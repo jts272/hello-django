@@ -168,3 +168,24 @@ Allow Django to handle and validate the form directly.
                form.save()
                return redirect('get_todo_list')
    ```
+
+## CRUD - U
+
+1. Create an Edit button that points to the url we will create,
+   `/edit/{{ item.id }}`. Django creates the appended `id`
+2. Create the new view `edit_item()`, providing `request` and `item_id`
+3. Render return the `todo/edit_item.html` we will create
+4. The edit page is based of the add page, which incorporates the `{{ form }}`.
+   By removing the form action, it POSTs to the current page
+5. Add the path as `edit/<item_id>/`, calling the `edit_item` view. Add `name`
+6. Create the form in the view with the Django shortcut `get_object_or_404`
+7. Add the post handler to update the db
+
+## CRUD - D
+
+1. Get the var with the `get_object_or_404`, supplying the class and id
+2. Call `delete()` on this var
+3. Return redirect
+
+For further specifics on Updating and Deleting in this application, see:
+https://docs.google.com/document/d/1RNDHMuQEBJ8if9XYR1WLjNJx_Z4Nad-NarjRVFrC0gQ/edit
