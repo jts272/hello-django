@@ -189,3 +189,11 @@ Allow Django to handle and validate the form directly.
 
 For further specifics on Updating and Deleting in this application, see:
 https://docs.google.com/document/d/1RNDHMuQEBJ8if9XYR1WLjNJx_Z4Nad-NarjRVFrC0gQ/edit
+
+## Django testing
+
+Django apps create a `tests.py` file, which can be duplicated and appended with
+an appropriate name for the group of things being tested, e.g. `test_views.py`
+
+We create a test class, which inherits `TestCase` from the defualt import. From
+here, we define functions with the standard `self.assert<Whatever>()` syntax.
