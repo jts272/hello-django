@@ -204,3 +204,5 @@ Run a specific test file with `python3 manage.py test <app>.tests_<module>`
 
 This can be further appended with the test class, then even further with the
 test function. This is done simply with dot notation.
+
+When testing for url paths, do not forget to include the trailing '`/`'
