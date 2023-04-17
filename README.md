@@ -197,3 +197,10 @@ an appropriate name for the group of things being tested, e.g. `test_views.py`
 
 We create a test class, which inherits `TestCase` from the defualt import. From
 here, we define functions with the standard `self.assert<Whatever>()` syntax.
+
+Classes that are being tested must also be imported, as shown in `test_forms.py`
+
+Run a specific test file with `python3 manage.py test <app>.tests_<module>`
+
+This can be further appended with the test class, then even further with the
+test function. This is done simply with dot notation.
