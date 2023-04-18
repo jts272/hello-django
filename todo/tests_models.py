@@ -13,3 +13,10 @@ class TestModels(TestCase):
         item = Item.objects.create(name='Test todo item')
         # Assert that the is_done status is false
         self.assertFalse(item.is_done)
+
+    def test_item_string_method_returns_name(self):
+        # Instantiate the item
+        item = Item.objects.create(name='Test todo item')
+        # Confirm this name is returned when we render item as a string
+        # Uses type coercion
+        self.assertEqual(str(item), 'Test todo item')

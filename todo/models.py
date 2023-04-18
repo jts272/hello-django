@@ -13,5 +13,7 @@ class Item(models.Model):
 
     # Override default Django behaviour of displaying:
     # class.name, 'object', (class.pk)
+    # In Python, this represents the object with the given string, when
+    # printed, not just a memory address
     def __str__(self):
         return str(self.name)

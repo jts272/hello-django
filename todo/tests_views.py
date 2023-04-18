@@ -56,3 +56,17 @@ class TestViews(TestCase):
         updated_item = Item.objects.get(id=item.id)
         # Then check its initial is_done status of True is now False
         self.assertFalse(updated_item.is_done)
+
+    # Remaining test shown by coverage
+    def test_can_edit_item(self):
+        # Create an item
+        item = Item.objects.create(name='Test todo item')
+        # Post an updated name
+        response = self.client.post(
+            f'/edit/{item.id}/', {'name': 'Updated name'})
+        # Assert the redirect
+        self.assertRedirects(response, '/')
+        # Get the updated item
+        updated_item = Item.objects.get(id=item.id)
+        # Assert the updated name
+        self.assertEqual(updated_item.name, 'Updated name')
