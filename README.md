@@ -195,7 +195,7 @@ https://docs.google.com/document/d/1RNDHMuQEBJ8if9XYR1WLjNJx_Z4Nad-NarjRVFrC0gQ/
 Django apps create a `tests.py` file, which can be duplicated and appended with
 an appropriate name for the group of things being tested, e.g. `test_views.py`
 
-We create a test class, which inherits `TestCase` from the defualt import. From
+We create a test class, which inherits `TestCase` from the default import. From
 here, we define functions with the standard `self.assert<Whatever>()` syntax.
 
 Classes that are being tested must also be imported, as shown in `test_forms.py`
@@ -206,3 +206,19 @@ This can be further appended with the test class, then even further with the
 test function. This is done simply with dot notation.
 
 When testing for url paths, do not forget to include the trailing '`/`'
+
+## Coverage
+
+Coverage is used to show _how much_ of our code has been tested - not how much
+is passing.
+
+1. `pip3 install coverage`
+2. Run with `coverage run --source=todo manage.py test`
+3. View the report with `coverage report`
+4. Create an interactive HTML report with `coverage html`
+   - This creates the `htmlcov` dir
+5. View the HTML with `python3 -m http.server`
+   - This will not work whilst the Django server is running - use one or the
+     other
+6. Create tests for the missing items highlighted in red
+7. Re-run coverage and the HTML report command
