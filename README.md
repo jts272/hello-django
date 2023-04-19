@@ -325,11 +325,11 @@ Here are the following steps to use Postgres in our app:
 6. Further down in the file, we can replace the default `DATABASES` var with the
    following:
 
-```py
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
-```
+   ```py
+   DATABASES = {
+       'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+   }
+   ```
 
 7. Run the `python3 manage.py migrate` command
    - This transfers the database _structure_ but not the data content
@@ -348,7 +348,7 @@ DATABASES = {
    imports are in order before pushing
 2. `git push heroku main`
    - If your `requirements.txt` contains `pkg_resources==0.0.0`, remove it. See
-     https://stackoverflow.com/questions/39577984/what-is-pkg-resources-0-0-0-in-output-of-pip-freeze-command
+     <https://stackoverflow.com/questions/39577984/what-is-pkg-resources-0-0-0-in-output-of-pip-freeze-command>
 3. We will see the push command fail. Heroku is looking for static files, but we
    have not used any in this application. The error messages provide us with the
    following code to input:
@@ -375,4 +375,14 @@ default.
 
 1. In `settings.py`, add the deployed URL as a string to the `ALLOWED_HOSTS` var
    - By default, this should be an empty list.
-   - Remove the preceding `https://` from the URL
+   - Remove the preceding `https://` from the URL and trailing `/`
+
+### Connecting GitHub and Heroku
+
+We can eliminate the need to manually push to _both_ the git and Heroku repos by
+connecting the two together, from the Heroku dashboard.
+
+1. Deploy tab
+2. Deployment method = GitHub (login and auth if required)
+3. Find and select the repo
+4. Enable automatic deploys

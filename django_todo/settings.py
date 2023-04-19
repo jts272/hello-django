@@ -30,7 +30,10 @@ SECRET_KEY = 'django-insecure-e=^wu5v32ii#y7^yjq95qp5(7*3ng&o7=l+p44=ztt2rxz7g0*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jts272-hello-django.herokuapp.com']
+# ALLOWED_HOSTS = ['jts272-hello-django.herokuapp.com']
+
+# Use config vars set on Heroku dashboard instead
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
