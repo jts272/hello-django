@@ -222,3 +222,42 @@ is passing.
      other
 6. Create tests for the missing items highlighted in red
 7. Re-run coverage and the HTML report command
+
+## Deployment
+
+### Heroku CLI install
+
+For WSL2:
+
+```bash
+curl https://cli-assets.heroku.com/install.sh | sh
+```
+
+### Logging in
+
+The following command assumes MFA is enabled on the account. This login method
+is required for API calls.
+
+1. `heroku login -i`
+2. Enter email address
+3. Enter the password - this is the API key found in 'Account settings' on the
+   web
+
+### Installing project requirements
+
+Heroku uses an ephemeral file system. It is wiped clean every time Heroku
+updates, or we redeploy our app. The SQLite db we have been using in development
+is file-based, which makes it unsuitable for production deployment.
+
+We will use a Heroku addon, which allows us to use Postgres that will be
+separate from our application. It will survive even if the app server is
+destroyed.
+
+Here are the following steps to use Postgres in our app:
+
+1. `pip3 install psycopg2-binary`
+   - We will install the Heroku addon later. This takes care of the Django side
+2. `pip3 install gunicorn`
+   - This replaces our development server once the app is deployed to Heroku
+3. `pip3 freeze --local > requirements.txt`
+   - This tells Heroku the packages to install for our app
