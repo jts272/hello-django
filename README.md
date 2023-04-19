@@ -386,3 +386,14 @@ connecting the two together, from the Heroku dashboard.
 2. Deployment method = GitHub (login and auth if required)
 3. Find and select the repo
 4. Enable automatic deploys
+
+### Additional changes made for deployment
+
+1. In `settings.py`, amend the `SECRET_KEY` var
+2. Set `ALLOWED_HOSTS` to an env var
+   - Set this in Heroku dashboard or in Heroku CLI with `heroku config`
+   - **Ensure that no whitespace or newline chars are present if copy/pasting
+     env vars!**
+3. HTML template title tags were updated, to see that automatic deploys were
+   reflected properly
+   - We can check activity logs to view the build progress
