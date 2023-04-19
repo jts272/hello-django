@@ -261,3 +261,22 @@ Here are the following steps to use Postgres in our app:
    - This replaces our development server once the app is deployed to Heroku
 3. `pip3 freeze --local > requirements.txt`
    - This tells Heroku the packages to install for our app
+
+### Creating a Heroku app
+
+1. `heroku apps:create jts272-hello-django`
+   - App will default to US region. Optionally append `--region eu`
+2. `heroku apps`
+   - Display our created apps in Heroku
+3. If a git repo has not been setup, Heroku automatically sets one up for us. By
+   entering `git remote -v` we should see:
+
+```bash
+heroku  https://git.heroku.com/jts272-hello-django.git (fetch)
+heroku  https://git.heroku.com/jts272-hello-django.git (push)
+origin  https://github.com/jts272/hello-django.git (fetch)
+origin  https://github.com/jts272/hello-django.git (push)
+```
+
+- `git push heroku main` would push the main branch to the heroku remote
+- `git push origin main` would push the main branch to the git remote
