@@ -339,3 +339,11 @@ DATABASES = {
 ```bash
 sudo fuser -k 8000/tcp
 ```
+
+## Attempting first deployment
+
+1. Commit and push all code to GitHub/origin. Ensure your `env.py` file and
+   imports are in order before pushing
+2. `git push heroku main`
+   - If your `requirements.txt` contains `pkg_resources==0.0.0`, remove it. See
+     https://stackoverflow.com/questions/39577984/what-is-pkg-resources-0-0-0-in-output-of-pip-freeze-command
