@@ -375,3 +375,4 @@ default.
 
 1. In `settings.py`, add the deployed URL as a string to the `ALLOWED_HOSTS` var
    - By default, this should be an empty list.
+   - Remove the preceding `https://` from the URL
