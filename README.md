@@ -460,3 +460,32 @@ if development:
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 ```
+
+## The Secret Key
+
+Naturally, best practice is to never push a secret key to our repo. We can
+create one in `env.py` for `settings.py` to access:
+
+### `env.py`
+
+```py
+os.environ['SECRET_KEY'] = 'your_secret_key'
+```
+
+### `settings.py`
+
+```py
+# Get secret key from env vars, or default to a blank string
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
+```
+
+The secret key can be re-rolled from the terminal with the following command:
+
+```py
+python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
+Alternatively, [online secret key generators](https://miniwebtool.com/django-secret-key-generator/)
+can be used.
+
+The secret key can also be provided to the Heroku config vars online.
