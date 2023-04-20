@@ -418,6 +418,16 @@ this can expose source code. This is what we are looking for:
 
 Use this instead:
 
+### `env.py`
+
+```py
+# Set debug mode to true locally, because this file is local only
+# Remember all args must be str
+os.environ.setdefault('DEBUG', 'True')
+```
+
+### `settings.py`
+
 ```py
 # Set false by default, unless we have it set True in local env.py
 DEBUG = os.environ.get('DEBUG', False)
