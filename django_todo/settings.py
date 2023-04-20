@@ -17,6 +17,12 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+# If the env var 'DEVELOPMENT' exists, it will be set to its respective
+# value, else False
+# This is used so that debug mode is only available in local dev mode
+# This also places condition on the database used
+development = os.environ.get('DEVELOPMENT', False)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,12 +36,18 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY', 'django-insecure-e=^wu5v32ii#y7^yjq95qp5(7*3ng&o7=l+p44=ztt2rxz7g0*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+
+# Set false by default, unless we have it set True in local env.py
+DEBUG = os.environ.get('DEBUG', False)
 
 # ALLOWED_HOSTS = ['jts272-hello-django.herokuapp.com']
 
 # Use config vars set on Heroku dashboard instead
-ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+if development:
+    ALLOWED_HOSTS = ['localhost']
+else:
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -85,17 +97,19 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# The actual database we want to use for production
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
+# Use different db, based on development or production environment
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # The actual database we want to use for production
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
 
 
 # Password validation
