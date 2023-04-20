@@ -17,11 +17,11 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-# If the env var 'DEVELOPMENT' exists, it will be set to its respective
-# value, else False
-# This is used so that debug mode is only available in local dev mode
-# This also places condition on the database used
-development = os.environ.get('DEVELOPMENT', False)
+# # If the env var 'DEVELOPMENT' exists, it will be set to its respective
+# # value, else False
+# # This is used so that debug mode is only available in local dev mode
+# # This also places condition on the database used
+# development = os.environ.get('DEVELOPMENT', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +40,8 @@ SECRET_KEY = os.environ.get(
 
 # Set false by default, unless we have it set True in local env.py
 DEBUG = os.environ.get('DEBUG', False)
+# Cross-reference this debug state to set development state
+development = DEBUG
 
 # ALLOWED_HOSTS = ['jts272-hello-django.herokuapp.com']
 

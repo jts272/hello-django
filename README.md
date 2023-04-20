@@ -397,3 +397,21 @@ connecting the two together, from the Heroku dashboard.
 3. HTML template title tags were updated, to see that automatic deploys were
    reflected properly
    - We can check activity logs to view the build progress
+
+### Development/Production environments
+
+We want to keep dev and production environments separate, with separate
+databases. Furthermore, we don't want debug mode enabled in production., as
+this can expose source code. This is what we are looking for:
+
+| Development  | Production    |
+| ------------ | ------------- |
+| SQLite       | Postgres      |
+| Debug = True | Debug = False |
+
+1. Set conditional var `development`, which defaults to `False`
+2. Use this condition on `ALLOWED_HOSTS`
+3. Use this condition on `DATABASES`
+4. Set `DEBUG` to `True` by default in `env.py`
+5. Set `DEBUG` to `os.environ.get('DEBUG', False)` in `settings.py`
+   - The `env.py` is never pushed, so can only be True locally
