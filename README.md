@@ -5,6 +5,11 @@ environment.
 
 This repository was created with GitHub's Python `.gitignore` template.
 
+**Django will generate a `SECRET_KEY` when creating an app in `manage.py`. This
+must never be pushed to a repository!**
+
+See the final section regarding [secret key best practices](#the-secret-key)
+
 ## Environment settings
 
 1. VS Code Running in Ubuntu 20.04 (WSL2)
@@ -488,4 +493,7 @@ python3 -c 'from django.core.management.utils import get_random_secret_key; prin
 Alternatively, [online secret key generators](https://miniwebtool.com/django-secret-key-generator/)
 can be used.
 
-The secret key can also be provided to the Heroku config vars online.
+A secret key must also be provided for Heroku's config vars online. It does not
+need to be the same one that was used locally. For example, the local env var
+was re-generated with the terminal command and the Heroku var was generated
+from the url above.
