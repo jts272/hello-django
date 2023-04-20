@@ -45,7 +45,7 @@ development = DEBUG
 
 # ALLOWED_HOSTS = ['jts272-hello-django.herokuapp.com']
 
-# Use config vars set on Heroku dashboard instead
+# HEROKU_HOSTNAME set on Heroku config vars
 if development:
     ALLOWED_HOSTS = ['localhost']
 else:

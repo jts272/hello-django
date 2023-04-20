@@ -409,9 +409,44 @@ this can expose source code. This is what we are looking for:
 | SQLite       | Postgres      |
 | Debug = True | Debug = False |
 
-1. Set conditional var `development`, which defaults to `False`
-2. Use this condition on `ALLOWED_HOSTS`
-3. Use this condition on `DATABASES`
-4. Set `DEBUG` to `True` by default in `env.py`
-5. Set `DEBUG` to `os.environ.get('DEBUG', False)` in `settings.py`
+1. ~~Set conditional var `development`, which defaults to `False`~~
+2. ~~Use this condition on `ALLOWED_HOSTS`~~
+3. ~~Use this condition on `DATABASES`~~
+4. ~~Set `DEBUG` to `True` by default in `env.py`~~
+5. ~~Set `DEBUG` to `os.environ.get('DEBUG', False)` in `settings.py`~~
    - The `env.py` is never pushed, so can only be True locally
+
+Use this instead:
+
+```py
+# Set false by default, unless we have it set True in local env.py
+DEBUG = os.environ.get('DEBUG', False)
+# Cross-reference this debug state to set development state
+development = DEBUG
+```
+
+Now we have a condition to set our `DATABASES` and `ALLOWED_HOSTS`
+
+```py
+# Use different db, based on development or production environment
+if development:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # The actual database we want to use for production
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+```
+
+```py
+# HEROKU_HOSTNAME set on Heroku config vars
+if development:
+    ALLOWED_HOSTS = ['localhost']
+else:
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+```
