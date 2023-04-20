@@ -490,6 +490,8 @@ The secret key can be re-rolled from the terminal with the following command:
 python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
+[Source](https://www.educative.io/answers/how-to-generate-a-django-secretkey)
+
 Alternatively, [online secret key generators](https://miniwebtool.com/django-secret-key-generator/)
 can be used.
 
